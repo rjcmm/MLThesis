@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <style id="dynamic-styles"></style> 
 </head>
-<body>
+<body class="dark-mode">
+    
+
+    <button id="modeToggle" class="mode-toggle">🌙</button>
+
     <div class="container">
         <div class="input-container" id="inputContainer1">
-
             <textarea id="inputContent1" placeholder="BITCHASS CONTENT HERE" rows="10" cols="40"></textarea>
         </div>
 
@@ -33,10 +36,8 @@
         });
     
         keyInputElement.addEventListener('input', function() {
-            // Get the value from the key input field
             const keyValue = keyInputElement.value.trim();
             
-            // If there's content in the key input, update the font
             if (keyValue) {
                 const fontUrlBase = `//static.jjwxc.net/tmp/fonts/jjwxcfont_${keyValue}`;
                 const fontStyle = `
@@ -53,9 +54,8 @@
                         font-family: 'jjwxcfont' !important, 'Microsoft YaHei', PingFangSC, sans-serif !important;
                     }
                 `;
-                dynamicStyles.innerHTML = fontStyle;  // Apply the updated font style
+                dynamicStyles.innerHTML = fontStyle; 
             } else {
-                // If there's no content in the key input, reset to default font
                 dynamicStyles.innerHTML = `
                     @font-face {
                         font-family: 'jjwxcfont'; 
@@ -68,6 +68,19 @@
                 `;
             }
         });
+
+        const modeToggleButton = document.getElementById('modeToggle');
+        const body = document.body;
+
+        body.classList.add('dark-mode');
+        modeToggleButton.innerHTML = '🌙'; 
+
+        modeToggleButton.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            modeToggleButton.innerHTML = body.classList.contains('dark-mode') ? '🌙' : '🌞';
+        });
+
+
     </script>
     
     
